@@ -18,11 +18,17 @@ function TechnicianDashboard() {
   const [technicianEmail, setTechnicianEmail] = useState('');
   const [technicianName, setTechnicianName] = useState('');
 
-  useEffect(() => {
-    fetchAssignedRepairs();
-    const interval = setInterval(fetchAssignedRepairs, 30000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   fetchAssignedRepairs();
+  //   const interval = setInterval(fetchAssignedRepairs, 30000);
+  //   return () => clearInterval(interval);
+  // }, []);
+useEffect(() => {
+  fetchAssignedRepairs();
+  const interval = setInterval(fetchAssignedRepairs, 30000);
+  return () => clearInterval(interval);
+}, [fetchAssignedRepairs]);
+
 
   const fetchAssignedRepairs = async () => {
     try {

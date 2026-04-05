@@ -3,9 +3,14 @@ import {
   Container, Row, Col, Card, Form, Button, Alert, Spinner, Modal, Badge
 } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+// import { 
+//   FaTools, FaSnowflake, FaTv, FaMicrophone, FaWater, 
+//   FaCheckCircle, FaWind, FaPlug, FaThermometerHalf 
+// } from 'react-icons/fa';
+
 import { 
-  FaTools, FaSnowflake, FaTv, FaMicrophone, FaWater, 
-  FaCheckCircle, FaWind, FaPlug, FaThermometerHalf 
+  FaSnowflake, FaTv, FaMicrophone, FaWater, 
+  FaCheckCircle, FaWind, FaPlug
 } from 'react-icons/fa';
 
 function BookService() {

@@ -15,7 +15,7 @@ function AdminDashboard() {
   const [loadingTechnicians, setLoadingTechnicians] = useState(false);
   const [error, setError] = useState('');
   const [showAssignModal, setShowAssignModal] = useState(false);
-  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [, setShowCreateModal] = useState(false);
   const [showAddTechnicianModal, setShowAddTechnicianModal] = useState(false);
   const [selectedRepair, setSelectedRepair] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
