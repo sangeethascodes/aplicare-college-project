@@ -3,6 +3,7 @@ import {
   Container, Row, Col, Card, Form, Button, Alert, Spinner, Modal, Badge
 } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { apiUrl } from '../api';
 // import { 
 //   FaTools, FaSnowflake, FaTv, FaMicrophone, FaWater, 
 //   FaCheckCircle, FaWind, FaPlug, FaThermometerHalf 
@@ -100,7 +101,7 @@ function BookService() {
         paymentStatus: 'pending'
       };
       
-      const response = await fetch('http://localhost:5000/api/repairs', {
+      const response = await fetch(apiUrl('/api/repairs'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(repairData)

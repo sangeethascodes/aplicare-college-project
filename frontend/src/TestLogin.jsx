@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { apiUrl } from './api';
 import { Container, Card, Form, Button, Alert } from 'react-bootstrap';
 
 function TestLogin() {
@@ -14,7 +15,7 @@ function TestLogin() {
     try {
       console.log('Attempting login with:', email);
       
-      const res = await fetch('http://localhost:5000/api/auth/signin', {
+      const res = await fetch(apiUrl('/api/auth/signin'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Container, Row, Col, Card, Button, Modal, Form, Alert } from 'react-bootstrap';
+import { apiUrl } from '../api';
 
 const services = [
   { id: 1, title: '🧊 Refrigerator', desc: 'Cooling issues, leaks, noise', img: 'https://images.unsplash.com/photo-1583288454700-3e2421b71573?w=400' },
@@ -24,7 +25,7 @@ function Home() {
     setLoading(true);
     
     try {
-      const res = await fetch('http://localhost:5000/api/repairs', {
+      const res = await fetch(apiUrl('/api/repairs'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

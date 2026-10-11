@@ -5,6 +5,7 @@ import {
   Modal, Form, Alert, Spinner, Dropdown, InputGroup
 } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { apiUrl } from './api';
 
 
 
@@ -40,7 +41,7 @@ function AdminDashboard() {
   const fetchRepairs = async () => {
   try {
     setLoading(true);
-    const response = await fetch('http://localhost:5000/api/orderedRepairs');
+    const response = await fetch(apiUrl('/api/orderedRepairs'));
     const data = await response.json();
     
     if (data.success) {
@@ -66,7 +67,7 @@ function AdminDashboard() {
       })));
     }
   } catch (err) {
-    setError('Failed to load repairs. Check backend (localhost:5000)');
+    setError('Failed to load repairs. Please check that the backend is available.');
   } finally {
     setLoading(false);
   }
@@ -75,7 +76,7 @@ function AdminDashboard() {
   const fetchTechnicians = async () => {
     try {
       setLoadingTechnicians(true);
-      const response = await fetch('http://localhost:5000/api/technicians');
+      const response = await fetch(apiUrl('/api/technicians'));
       const data = await response.json();
       
       if (data.success && data.technicians) {
@@ -123,7 +124,7 @@ function AdminDashboard() {
         specialization: specializationArray
       };
       
-      const response = await fetch('http://localhost:5000/api/technicians', {
+      const response = await fetch(apiUrl('/api/technicians'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(technicianData)
@@ -164,7 +165,7 @@ function AdminDashboard() {
         return;
       }
       
-      const response = await fetch(`http://localhost:5000/api/orderedRepairs/${repairId}`, {
+      const response = await fetch(apiUrl(`/api/orderedRepairs/${repairId}`), {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -196,7 +197,7 @@ function AdminDashboard() {
     if (!window.confirm('Delete this repair permanently?')) return;
     
     try {
-      const response = await fetch(`http://localhost:5000/api/orderedRepairs/${repairId}`, {
+      const response = await fetch(apiUrl(`/api/orderedRepairs/${repairId}`), {
         method: 'DELETE'
       });
       
@@ -257,7 +258,7 @@ function AdminDashboard() {
         return;
       }
       
-      const response = await fetch(`http://localhost:5000/api/orderedRepairs/${selectedRepair.id}`, {
+      const response = await fetch(apiUrl(`/api/orderedRepairs/${selectedRepair.id}`), {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -4,6 +4,7 @@ import {
 } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { FaSignInAlt, FaEnvelope, FaLock, FaTools } from 'react-icons/fa';
+import { apiUrl } from '../api';
 
 function TechnicianAuth() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ function TechnicianAuth() {
     setError('');
     
     try {
-      const response = await fetch('http://localhost:5000/api/auth/signin', {
+      const response = await fetch(apiUrl('/api/auth/signin'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

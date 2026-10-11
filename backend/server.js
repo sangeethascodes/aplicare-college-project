@@ -4,15 +4,23 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const app = express();
 
-// ✅ CORS FIXED
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  ...(process.env.FRONTEND_URL || '')
+    .split(',')
+    .map(origin => origin.trim())
+    .filter(Boolean)
+];
+
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001'], 
+  origin: [...new Set(allowedOrigins)],
   credentials: true
 }));
 app.use(express.json());
 
 // MongoDB
-mongoose.connect('mongodb://localhost:27017/aplicare')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/aplicare')
   .then(() => console.log('✅ MongoDB Connected!'))
   .catch(err => console.log('❌ MongoDB Error:', err.message));
 
@@ -485,9 +493,9 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log('\n🚀 Server running on http://localhost:5000');
+  console.log(`\n🚀 Server running on port ${PORT}`);
   console.log('📡 Available endpoints:');
   console.log('   - GET  http://localhost:5000/api/technicians');
   console.log('   - POST http://localhost:5000/api/technicians');

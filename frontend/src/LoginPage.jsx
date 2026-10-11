@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { apiUrl } from './api';
 import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
 import './LoginPage.css';
@@ -34,7 +35,7 @@ function LoginPage() {
         try {
             console.log('🔍 Login attempt for:', email);
             
-            const response = await fetch('http://localhost:5000/api/auth/signin', {
+            const response = await fetch(apiUrl('/api/auth/signin'), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
@@ -79,7 +80,7 @@ function LoginPage() {
             }
         } catch (err) {
             console.error('❌ Login error:', err);
-            setError('Network error. Backend must be running on localhost:5000');
+            setError('Network error. Please check that the backend is available.');
         } finally {
             setLoading(false);
         }
@@ -112,7 +113,7 @@ function LoginPage() {
         try {
             console.log('📝 Registration attempt for:', registerData.email);
             
-            const response = await fetch('http://localhost:5000/api/auth/register', {
+            const response = await fetch(apiUrl('/api/auth/register'), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(registerData)
@@ -130,7 +131,7 @@ function LoginPage() {
             }
         } catch (err) {
             console.error('❌ Registration error:', err);
-            setError('Network error. Backend must be running on localhost:5000');
+            setError('Network error. Please check that the backend is available.');
         } finally {
             setLoading(false);
         }

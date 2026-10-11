@@ -4,6 +4,7 @@ import {
 } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { FaUserPlus, FaSignInAlt, FaEnvelope, FaLock, FaPhone, FaUser } from 'react-icons/fa';
+import { apiUrl } from '../api';
 
 function CustomerAuth() {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ function CustomerAuth() {
     setError('');
     
     try {
-      const response = await fetch('http://localhost:5000/api/auth/signin', {
+      const response = await fetch(apiUrl('/api/auth/signin'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -92,7 +93,7 @@ function CustomerAuth() {
     }
     
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const response = await fetch(apiUrl('/api/auth/register'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

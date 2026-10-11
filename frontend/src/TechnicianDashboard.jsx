@@ -4,6 +4,7 @@ import {
   Modal, Form, Alert, Spinner, Dropdown
 } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { apiUrl } from './api';
 
 function TechnicianDashboard() {
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ useEffect(() => {
       setTechnicianEmail(user.email);
       setTechnicianName(user.fullName || user.email);
       
-      const response = await fetch(`http://localhost:5000/api/orderedRepairs/technician/${user.email}`);
+      const response = await fetch(apiUrl(`/api/orderedRepairs/technician/${user.email}`));
       const data = await response.json();
       
       if (Array.isArray(data)) {
@@ -100,7 +101,7 @@ useEffect(() => {
       }
       
       const response = await fetch(
-        `http://localhost:5000/api/orderedRepairs/${selectedRepair._id}/status`,
+        apiUrl(`/api/orderedRepairs/${selectedRepair._id}/status`),
         {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },

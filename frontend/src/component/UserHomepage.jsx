@@ -4,6 +4,7 @@ import {
 } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
+import { apiUrl } from '../api';
 
 function UserHomePage() {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ function UserHomePage() {
   const fetchUserRepairs = async (userId) => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/orderedRepairs');
+      const response = await fetch(apiUrl('/api/orderedRepairs'));
       const data = await response.json();
       
       if (data.success) {
@@ -69,7 +70,7 @@ function UserHomePage() {
 
   const fetchPendingFeedbacks = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/user/pending-feedback/${userId}`);
+      const response = await fetch(apiUrl(`/api/user/pending-feedback/${userId}`));
       const data = await response.json();
       
       if (data.success) {
@@ -94,7 +95,7 @@ function UserHomePage() {
     setError('');
     
     try {
-      const response = await fetch(`http://localhost:5000/api/orderedRepairs/${selectedRepair._id}/status`, {
+      const response = await fetch(apiUrl(`/api/orderedRepairs/${selectedRepair._id}/status`), {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -133,7 +134,7 @@ function UserHomePage() {
     setError('');
     
     try {
-      const response = await fetch('http://localhost:5000/api/user/submit-feedback', {
+      const response = await fetch(apiUrl('/api/user/submit-feedback'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

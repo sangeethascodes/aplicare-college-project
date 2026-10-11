@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Container, Form, Button, Alert, Card } from 'react-bootstrap';
+import { apiUrl } from '../api';
 import { useNavigate, Link } from 'react-router-dom';
 
 function Signup() {
@@ -13,7 +14,7 @@ function Signup() {
     setLoading(true);
     
     try {
-      const res = await fetch('http://localhost:5000/api/customers/register', {
+      const res = await fetch(apiUrl('/api/customers/register'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
